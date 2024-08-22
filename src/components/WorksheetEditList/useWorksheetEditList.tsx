@@ -8,7 +8,7 @@ const useWorksheetEditList = ({
   handleRemoveSimilarProblemId,
   handleRemoveProblem
 }: Omit<WorksheetEditListProps, 'similarProblemId'>) => {
-  // '유사버튼'클릭에 대한 핸들러
+  // '유사문제'버튼 클릭에 대한 핸들러
   const handleClickSimilarButton = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const { id } = e.currentTarget.dataset;

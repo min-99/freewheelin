@@ -9,6 +9,16 @@ const WorksheetEditListNodata = () => {
   return (
     <SWorksheetEditListNodata>
       <Text
+        variant='body1_16_bold'
+        color='#ffffff'
+        $padding='17px 0px 16px 16px'
+        $position='absolute'
+        $top={0}
+        $left={0}
+      >
+        학습지 상세 편집
+      </Text>
+      <Text
         variant='body2_14_regular'
         color='#ffffff'
         $width='274px'

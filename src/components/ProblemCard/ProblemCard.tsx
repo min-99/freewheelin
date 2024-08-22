@@ -94,7 +94,7 @@ const ProblemCard = ({
             {problemTypeData[type].label}
           </Badge>
         </VFlexBox>
-        <div style={{ flex: 1, padding: '24px 0px' }}>
+        <SImgBox>
           <img
             src={problemImageUrl}
             alt='문제'
@@ -104,7 +104,7 @@ const ProblemCard = ({
             srcSet={`${problemImageUrl} 1x, ${problemImageUrl.replace('.jpg', '@2x.jpg')} 2x`}
             sizes='(max-width: 600px) 100vw, 304px'
           />
-        </div>
+        </SImgBox>
       </HFlexBox>
     </SProblemCard>
   );
@@ -119,6 +119,11 @@ const SProblemCard = styled.div`
   &.active {
     border: 3px solid #00abff;
   }
+`;
+
+const SImgBox = styled.div`
+  flex: 1;
+  padding: 24px 0px;
 `;
 
 export default memo(ProblemCard);
