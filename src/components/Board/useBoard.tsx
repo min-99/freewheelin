@@ -38,7 +38,7 @@ const useBoard = () => {
     (id: number) => {
       setSimilarProblemId({ id, isUpdate: true });
     },
-    [similarProblemId]
+    []
   );
   // 유사문제(state)를 제거하는 함수
   const handleRemoveSimilarProblemId = useCallback(
