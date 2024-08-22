@@ -1,47 +1,26 @@
-# Getting Started with Create React App
+## freewheelin
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+안녕하세요, 프리윌린 과제전형에 참가하게 된 탁민주 입니다 :)
 
-## Available Scripts
+### 설계방향 및 의도
 
-In the project directory, you can run:
+#### 1. 컴포넌트 설계
 
-### `yarn start`
+> - Board : 페이지에 대한 컴포넌트
+> - SimilarWorksheetList : 유사 문제 리스트 컴포넌트
+> - SimilarWorksheetListNodata : 유사문제 리스트의 내용이 없는 경우에 대한 컴포넌트
+> - WorksheetEditList : 학습지 상세 편집 컴포넌트
+> - WorksheetEditListNodata : 학습지 상세 편집에 내용이 없는 경우에 대한 컴포넌트
+> - ProblemCard : 문제카드(유사문항의 문제카드와 학습지상세편집의 문제카드가 같은 컴포넌트를 사용하고 variant로 이를 구분합니다.)
+> - Badge : 문제카드에 들어가는 난이도, 정답률, 타입을 노출되는 컴포넌트로 활용, 색상이나 labe에 대한 정보는 ProblemCard폴더에 badgeData로 가지고 있습니다.
+> - HFlexBox : 가로로 배치되는 flexbox, space에 간격에 대한 정의를 넣고 나머지는 필요한 경우 css props를 조정해서 사용합니다.
+> - VFlexBox : 세로로 배치되는 flexbox, space에 간격에 대한 정의를 넣고 나머지는 필요한 경우 css props를 조정해서 사용합니다.
+> - IconButton : 해당 과제에서 사용되는 버튼들(유사문제(+유사문제 활성화), 삭제, 교체, 추가)
+> - Icongraphy : svg를 컴포넌트로 리턴하고, size 조정이 가능하도록 확장한 컴포넌트(Icongraphy의 네이밍은 figma의 네이밍 사용)
+> - Text : Typography를 표현하기 위한 컴포넌트 (typography네이밍은 figma의 네이밍 사용)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### 2. state 관리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# freewheelin
+> - Board
+> - SimilarWorksheetList
+> - WorksheetEditList

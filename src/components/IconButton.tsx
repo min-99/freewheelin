@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import Icongraphy, { IcongraphyVariants } from './Icongraphy';
 import HFlexBox from './HFlexBox';
@@ -51,18 +52,12 @@ const IconButtonData: Record<
 
 export interface IconButtonProps extends CSSProperties {
   variant: IconButtonVariants;
-  isActive?: boolean;
   handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const IconButton = ({ variant, handleClick, ...props }: IconButtonProps) => {
   return (
-    <SIconButton
-      type='button'
-      variant={variant}
-      onClick={handleClick}
-      {...props}
-    >
+    <SIconButton type='button' onClick={handleClick} {...props}>
       <HFlexBox space={4}>
         <Icongraphy variant={IconButtonData[variant].icon} size={16} />
         <Text
@@ -76,7 +71,7 @@ const IconButton = ({ variant, handleClick, ...props }: IconButtonProps) => {
   );
 };
 
-const SIconButton = styled.button<IconButtonProps>`
+const SIconButton = styled.button<CSSProperties>`
   background-color: transparent;
   border: none;
   outline: none;
@@ -84,4 +79,4 @@ const SIconButton = styled.button<IconButtonProps>`
   ${(props) => convertPropsToCss(props)}
 `;
 
-export default IconButton;
+export default memo(IconButton);

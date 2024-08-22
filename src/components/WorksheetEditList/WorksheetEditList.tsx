@@ -33,7 +33,6 @@ const WorksheetEditList = ({
       handleRemoveProblem
     });
 
-  //console.log('학습지 상세 편집 렌더링');
   if (problemList.length === 0) return <WorksheetEditListNodata />;
 
   return (

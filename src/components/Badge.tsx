@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import Text from './Text';
 
@@ -28,4 +29,4 @@ const SBadge = styled.div`
   align-items: center;
 `;
 
-export default Badge;
+export default memo(Badge);

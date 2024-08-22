@@ -15,7 +15,7 @@ const useSimilarWorksheetList = ({
 }: SimilarWorksheetListProps) => {
   const [apiSimilarProblemId, setApiSimilarProblemId] = useState<
     number | undefined
-  >();
+  >(); // API에게 요청할 SimilarProblemId (API를 요청할 경우에만 사용)
   const [similarProblemList, setSimilarProblemList] = useState<Problem[]>([]);
 
   // API 호출
@@ -33,6 +33,7 @@ const useSimilarWorksheetList = ({
   );
 
   useEffect(() => {
+    // isApiUpdate여부에 따라 apiSimilarProblemId를 업데이트 함
     if (isApiUpdate && similarProblemId)
       setApiSimilarProblemId(similarProblemId);
   }, [isApiUpdate, similarProblemId]);
@@ -41,6 +42,7 @@ const useSimilarWorksheetList = ({
     if (data) setSimilarProblemList(data);
   }, [data]);
 
+  // 교체 버튼에 대한 핸들러
   const handleChangeProblemButton = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const { id } = e.currentTarget.dataset;
@@ -50,7 +52,6 @@ const useSimilarWorksheetList = ({
           (item) => item.id === Number(id)
         );
         if (problem) handleChangeProblem(problem);
-
         setSimilarProblemList((prev) =>
           prev.filter((item) => item.id !== Number(id))
         );
@@ -59,6 +60,7 @@ const useSimilarWorksheetList = ({
     [similarProblemList, handleChangeProblem]
   );
 
+  // 추가 버튼에 대한 핸들러
   const handleAddProblemButton = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const { id } = e.currentTarget.dataset;

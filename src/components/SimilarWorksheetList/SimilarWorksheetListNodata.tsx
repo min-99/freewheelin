@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import HFlexBox from '../HFlexBox';
 import Icongraphy from '../Icongraphy';
@@ -71,4 +72,4 @@ const SSimilarProblemButton = styled.div`
   gap: 1px;
 `;
 
-export default SimilarWorksheetListNodata;
+export default memo(SimilarWorksheetListNodata);

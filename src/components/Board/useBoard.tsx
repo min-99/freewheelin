@@ -5,9 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 export type GetProblemsResponse = Problem[];
 
-const fetcher = (url: string) => axiosInstance.get(url).then((res) => res.data);
-
 const useBoard = () => {
+  // 유사문제로 선택된 문제
   const [similarProblemId, setSimilarProblemId] = useState<{
     id: number | undefined;
     isUpdate: boolean;
@@ -20,7 +19,7 @@ const useBoard = () => {
   // API 호출
   const { isLoading, data, error } = useSWR<GetProblemsResponse>(
     `/problems`,
-    fetcher,
+    (url: string) => axiosInstance.get(url).then((res) => res.data),
     {
       revalidateOnFocus: false,
       refreshInterval: 0,
@@ -34,14 +33,14 @@ const useBoard = () => {
     }
   }, [data]);
 
-  // event handler
+  // 유사문제(state)를 업데이트하는 함수
   const handleSetSimilarProblemId = useCallback(
     (id: number) => {
-      // 클릭에 의한 업데이트(API 요청 해야함)
       setSimilarProblemId({ id, isUpdate: true });
     },
     [similarProblemId]
   );
+  // 유사문제(state)를 제거하는 함수
   const handleRemoveSimilarProblemId = useCallback(
     (id: number) => {
       if (id === similarProblemId.id)
@@ -50,10 +49,12 @@ const useBoard = () => {
     [similarProblemId]
   );
 
+  // 문제를 제거하는 함수
   const handleRemoveProblem = useCallback((id: number) => {
     setProblemList((prev) => prev.filter((problem) => problem.id !== id));
   }, []);
 
+  // 문제를 교체하는 함수
   const handleChangeProblem = useCallback(
     (problem: Problem) => {
       setProblemList((prev) =>
@@ -64,6 +65,7 @@ const useBoard = () => {
     [similarProblemId, handleSetSimilarProblemId]
   );
 
+  // 문제를 추가하는 함수
   const handleAddProblem = useCallback(
     (problem: Problem) => {
       setProblemList((prev) => {

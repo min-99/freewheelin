@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import { SimilarWorksheetList } from '..';
-import './Board.css';
 import styled from 'styled-components';
 import WorksheetEditList from '../WorksheetEditList';
 import useBoard from './useBoard';
@@ -18,7 +18,6 @@ const Board = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (!problemList) return <div>데이터를 정상적으로 가져오지 못했습니다.</div>;
-
   return (
     <SBoard className='container'>
       <SimilarWorksheetList
@@ -51,4 +50,4 @@ const SBoard = styled.div`
   gap: 16px;
 `;
 
-export default Board;
+export default memo(Board);

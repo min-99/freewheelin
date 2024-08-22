@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { CSSProperties } from '../type';
 import type { Properties } from 'csstype';
@@ -18,27 +18,32 @@ export interface HFlexBoxProps extends CSSProperties {
  */
 const HFlexBox = ({
   children,
+  space,
   $alignItems = 'center',
   ...props
 }: HFlexBoxProps) => {
   return (
-    <StyledBaseStack {...props} $alignItems={$alignItems}>
+    <StyledBaseStack {...props} $space={space} $alignItems={$alignItems}>
       {children}
     </StyledBaseStack>
   );
 };
 
-const StyledBaseStack = styled.div<HFlexBoxProps>`
+const StyledBaseStack = styled.div<
+  CSSProperties & {
+    $space?: number | Properties['justifyContent'];
+  }
+>`
   display: flex;
   flex-direction: row;
-  ${({ space }) =>
-    space && typeof space !== 'number' && `justify-content: ${space};`}
+  ${({ $space }) =>
+    $space && typeof $space !== 'number' && `justify-content: ${$space};`}
   ${({ $alignItems }) => $alignItems && `align-items: ${$alignItems};`}
     > *:not(:last-child) {
-    ${({ space }) =>
-      space && typeof space === 'number' && `margin-right: ${space}px;`}
+    ${({ $space }) =>
+      $space && typeof $space === 'number' && `margin-right: ${$space}px;`}
   }
   ${(props) => convertPropsToCss(props)}
 `;
 
-export default HFlexBox;
+export default memo(HFlexBox);

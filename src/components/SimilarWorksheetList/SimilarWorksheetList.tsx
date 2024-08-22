@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import Text from '../Text';
 import VFlexBox from '../VFlexBox';
@@ -71,4 +72,4 @@ const SProblemList = styled.div`
   flex: 1;
 `;
 
-export default SimilarWorksheetList;
+export default memo(SimilarWorksheetList);

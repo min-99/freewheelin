@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { CSSProperties } from '../type';
 import type { Properties } from 'csstype';
@@ -18,28 +18,37 @@ export interface VFlexBoxProps extends CSSProperties {
  */
 const VFlexBox = ({
   children,
+  space,
   $justifyContent = 'center',
   ...props
 }: VFlexBoxProps) => {
   return (
-    <StyledBaseStack {...props} $justifyContent={$justifyContent}>
+    <StyledBaseStack
+      {...props}
+      $space={space}
+      $justifyContent={$justifyContent}
+    >
       {children}
     </StyledBaseStack>
   );
 };
 
-const StyledBaseStack = styled.div<VFlexBoxProps>`
+const StyledBaseStack = styled.div<
+  CSSProperties & {
+    $space?: number | Properties['justifyContent'];
+  }
+>`
   display: flex;
   flex-direction: column;
-  ${({ space }) =>
-    space && typeof space !== 'number' && `justify-content: ${space};`}
+  ${({ $space }) =>
+    $space && typeof $space !== 'number' && `justify-content: ${$space};`}
   ${({ $justifyContent }) =>
     $justifyContent && `justify-content: ${$justifyContent};`}
     > *:not(:last-child) {
-    ${({ space }) =>
-      space && typeof space === 'number' && `margin-bottom: ${space}px;`}
+    ${({ $space }) =>
+      $space && typeof $space === 'number' && `margin-bottom: ${$space}px;`}
   }
   ${(props) => convertPropsToCss(props)}
 `;
 
-export default VFlexBox;
+export default memo(VFlexBox);

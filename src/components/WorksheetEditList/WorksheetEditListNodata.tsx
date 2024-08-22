@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import Text from '../Text';
 
@@ -53,4 +54,4 @@ const SWorksheetEditListNodata = styled(SWorksheetEditList)`
   position: relative;
 `;
 
-export default WorksheetEditListNodata;
+export default memo(WorksheetEditListNodata);

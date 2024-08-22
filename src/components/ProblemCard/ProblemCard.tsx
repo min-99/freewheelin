@@ -1,19 +1,20 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import HFlexBox from '../HFlexBox';
 import Text from '../Text';
 import IconButton from '../IconButton';
 import VFlexBox from '../VFlexBox';
 import { Problem } from '../../type';
-import { levelData, problemTypeData } from './badge-data';
+import { levelData, problemTypeData } from './badgeData';
 import Badge from '../Badge';
 
 export interface ProblemCardProps extends Problem {
   variant?: 'SIMILAR' | 'WORKSHEET';
   // 유사문제 버튼 활성화 여부 (WORKSHEET인 경우에만 동작)
   isSimilarActive?: boolean;
-  // 첫번째 요소의 버튼 이벤트
+  // 첫번째 요소의 버튼 이벤트 (유사문제 or 교체)
   handleClick1?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  // 두번째 요소의 버튼 이벤트
+  // 두번째 요소의 버튼 이벤트 (삭제 or 추가)
   handleClick2?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -94,7 +95,15 @@ const ProblemCard = ({
           </Badge>
         </VFlexBox>
         <div style={{ flex: 1, padding: '24px 0px' }}>
-          <img src={problemImageUrl} alt='문제' style={{ maxWidth: '304px' }} />
+          <img
+            src={problemImageUrl}
+            alt='문제'
+            width={304}
+            height='100%'
+            loading='lazy'
+            srcSet={`${problemImageUrl} 1x, ${problemImageUrl.replace('.jpg', '@2x.jpg')} 2x`}
+            sizes='(max-width: 600px) 100vw, 304px'
+          />
         </div>
       </HFlexBox>
     </SProblemCard>
@@ -112,4 +121,4 @@ const SProblemCard = styled.div`
   }
 `;
 
-export default ProblemCard;
+export default memo(ProblemCard);

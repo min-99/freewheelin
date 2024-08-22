@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
-import typography from '../typogrphy';
+import typography from '../typography';
 import { CSSProperties } from '../type';
 import { convertPropsToCss } from '../utill';
 
@@ -23,20 +23,22 @@ const Text = ({
   ...props
 }: TextProps) => {
   return (
-    <TextBox variant={variant} color={color} $isNoWrap={isNoWrap} {...props}>
+    <TextBox $variant={variant} $color={color} $isNoWrap={isNoWrap} {...props}>
       {children}
     </TextBox>
   );
 };
 
 const TextBox = styled.div<
-  TextProps & {
-    $isNoWrap: boolean;
+  CSSProperties & {
+    $isNoWrap: TextProps['isNoWrap'];
+    $variant: TextProps['variant'];
+    $color: TextProps['color'];
   }
 >`
-  ${({ variant, color, $isNoWrap, ...props }) => css`
-    ${typography[variant]}
-    color: ${color};
+  ${({ $variant, $color, $isNoWrap, ...props }) => css`
+    ${typography[$variant]}
+    color: ${$color};
     ${$isNoWrap
       ? css`
           overflow: hidden;
@@ -51,4 +53,4 @@ const TextBox = styled.div<
   `}
 `;
 
-export default Text;
+export default memo(Text);
